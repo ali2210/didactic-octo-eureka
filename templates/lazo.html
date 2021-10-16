@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Roboto+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" integrity="sha512-yNJzAsg5JyP91u+sLHlUDULMBd3hmEiVkYeeN1cQBKaLZ7EyT6oH2u5THNIRM2Fu6VKcZJv+F/QAp1h/qzy9Ow==" crossorigin="anonymous"></script>
+    <title> Lazo </title>
+    <style>
+            .angle-down{
+                position: relative;
+                left: 400px;
+                top: -4px;     
+            }
+            .cangle-down{
+                position: relative;
+                left: 256px;
+                top: -3px; 
+            }
+            .pangle-down{
+                position: relative;
+                left:498px;
+                top: -3px; 
+            }
+            .dangle-down{
+                position: relative;
+                left:594px;
+                top: -3px;
+            }
+            .langle-down{
+                position: relative;
+                left:543px;
+                top: -3px;
+            }
+            .cdangle-down{
+                position: relative;
+                top:-3px;
+                left:457px;
+            }
+            .bangle-down{
+                position: relative;
+                top:-3px;
+                left: 554px;
+            }
+    </style>
+</head>
+<body>
+    <form method="post" action="/dockerfile/create">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action">
+                Choose image base (prefer language).
+                <button type="button" class="btn btn-light angle-down" data-toggle="collapse" href="#baseImage" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="baseImage">
+                    <div class="card card-body">
+                      <input type="text" placeholder="golang:1.17.0-alpine3.14" class="bassclass" name="bassImage" required/>
+                      <label class="bassclass" for="language_base_image"> Choose your base image </label>
+                      <small> Currently this version supports #go only </small>
+                    </div>
+                  </div>
+            </a>
+            <a class="list-group-item">
+                C support enabled by default or change the default support
+                <button type="button" class="btn btn-light cangle-down" data-toggle="collapse" href="#cgosupport" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="cgosupport">
+                    <div class="card card-body">
+                        <input type="checkbox" name="csupport" aria-label="Checkbox for following text input"> <span> default </span></i>
+                    </input>
+                        <input type="checkbox" name="csupport" aria-label="Checkbox for following text input"> <span> user-defined </span> </input>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item">
+                Request received at port 
+                <button type="button" class="btn btn-light pangle-down" data-toggle="collapse" href="#porting" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="porting">
+                    <div class="card card-body">
+                        <input type="text" placeholder="5000" class="bassclass" name="bassImage" required/>
+                        <label class="bassclass" for="traffic"> Application traffic Port </label>
+                        <small> Currently this version supports #go only </small>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item">
+                 Application
+                <button type="button" class="btn btn-light dangle-down" data-toggle="collapse" href="#mkdir" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="mkdir">
+                    <div class="card card-body">
+                        <input type="text" placeholder="mkdir /app" class="mkdr" name="mkdr" required/>
+                        <label class="bassclass" for="mkdir_app">  Application add in cluster </label>
+                        <small> Currently this version supports #go only </small>
+                    </div>
+                </div>   
+            </a>
+            <a class="list-group-item">
+                Label applications
+              <button type="button" class="btn btn-light langle-down" data-toggle="collapse" href="#label" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+              </button>
+                <div class="collapse" id="label">
+                    <div class="card card-body">
+                        <input type="text" placeholder="label" class="labelclass" name="label" required/>
+                        <label class="bassclass" for="label"> Label </label>
+                        <small> Currently this version supports #go only </small>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item">
+                Copy and download packages
+                <button type="button" class="btn btn-light cdangle-down" data-toggle="collapse" href="#downloadPkg" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="downloadPkg">
+                    <div class="card card-body">
+                        <input type="text" placeholder="go.mod go.sum ./" class="labelclass" name="label" required/>
+                        <label class="bassclass" for="label"> Download Package </label>
+                        <small> Currently this version supports #go only </small>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item">
+                Build Application
+                <button type="button" class="btn btn-light bangle-down" data-toggle="collapse" href="#buildapp" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="buildapp">
+                    <div class="card card-body">
+                        <input type="text" placeholder="go build -o apps" class="labelclass" name="label" required/>
+                        <label class="bassclass" for="label"> Build Application </label>
+                        <small> Currently this version supports #go only </small>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item">
+                Ready to execute app
+                <button type="button" class="btn btn-light eangle-down" data-toggle="collapse" href="#exeapp" role="button" aria-expanded="false">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <div class="collapse" id="exeapp">
+                    <div class="card card-body">
+                        <input type="text" placeholder="cmd['/app/apps']" class="labelclass" name="label" required/>
+                        <label class="bassclass" for="label"> Execute Application </label>
+                        <small> Currently this version supports #go only </small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
