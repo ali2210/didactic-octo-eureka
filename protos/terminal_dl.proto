@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package protos;
 
-option go_package = "github.com/ali2210/didactic-octo-eureka/lazoserver/protos";
+option go_package = "github.com/ali2210/didactic-octo-eureka/protos";
 
 message Dockers{
     string Command = 1;  // dockerfile compose of keys and values
@@ -15,8 +15,8 @@ message Dockers{
 }
 
 message Action{
-    string Event = 1;  // hold file name
-    enum Action_Event {  // either file exist or not 
+    string Event = 1;  
+    enum Action_Event {   
         OK = 0;
         ERROR = 1;
     }
@@ -25,11 +25,11 @@ message Action{
 
 message Program_Event {
     repeated Dockers Events = 1;
-    Action OperatingEvents = 2;
+    repeated Action OperatingEvents = 2;
 }
 
 //  User can create dockerfile with these methods 
 service TerminalDlService{
     rpc CreateFile(Action) returns (Action);
-    rpc Copy(Program_Event) returns (Program_Event); 
+    rpc CopyContent(Program_Event) returns (Program_Event); 
 }
